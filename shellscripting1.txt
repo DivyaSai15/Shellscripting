@@ -1,0 +1,440 @@
+Program 1:
+**********
+
+#!/bin/bash
+echo "HELLO WORLD"
+
+
+Expected Output:
+****************
+HELLO WORLD
+
+
+Program 2:
+**********
+#!/bin/bash
+#timestable-print out a multiplication table 
+for i in 1 2 3
+do
+ for j in 1 2 3
+ do
+  value='expr $i\*$j'
+  echo -n "$value"
+done
+echo
+done
+
+
+Expected Output:
+****************
+expr $i\*$jexpr $i\*$jexpr $i\*$j
+expr $i\*$jexpr $i\*$jexpr $i\*$j
+expr $i\*$jexpr $i\*$jexpr $i\*$j
+
+
+Program 3:
+**********
+#!/bin/bash
+
+if grep "UNIX" myfile>/swapna/null
+then
+  echo UNIX occurs in myfile
+else
+  echo No!
+  echo UNIX doesnot occur in mylife
+fi
+
+Expected Output:
+****************
+No!
+UNIX doesnot occur in mylife
+
+
+
+Program 4:
+**********
+#!/bin/bash
+
+if grep "UNIX" myfile>/swapna/null
+then
+  echo "UNIX occurs in file"
+elif grep "DOS" myfile>swapna/null
+then
+  echo "Unix does not occur,but DOS does"
+else
+  echo "Nobody is there"
+fi
+          
+
+Expected Output:
+****************
+Nobody is there
+
+
+
+Program 5:
+**********
+#!/bin/bash
+
+if grep unix mylife
+then
+   :
+else
+   echo "Sorry,unix was not found"
+fi
+
+
+Expected Output:
+****************
+Sorry,unix was not found
+
+
+Program 6:
+**********
+#!/bin/bash
+smallest=10000
+for i in 5 8 19 8 7 3;do
+  if test $i -lt $smallest;then
+     smallest=$i
+  fi
+done
+echo $smallest
+
+Expected Output:
+****************
+3
+
+
+
+Program 7:
+**********
+#!/bin/bash
+smallest=10000
+for i in 5 8 19 8 7 3;do
+   if [ $i -lt $smallest ];then
+      smallest=$i
+   fi
+done
+echo $smallest
+
+
+
+Expected Output:
+****************
+3
+
+
+Program 8:
+**********
+#!/bin/sh
+
+a=0
+
+until [ ! $a -lt 10 ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+
+
+Expected Output:
+****************
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+Program 9:
+**********
+#!/bin/sh
+
+a=0
+while [ "$a" -lt 10 ]    # this is loop1
+do
+   b="$a"
+   while [ "$b" -ge 0 ]  # this is loop2
+   do
+      echo -n "$b "
+      b=`expr $b - 1`
+   done
+   echo
+   a=`expr $a + 1`
+done
+
+
+Expected Output:
+****************
+0 
+1 0 
+2 1 0 
+3 2 1 0 
+4 3 2 1 0 
+5 4 3 2 1 0 
+6 5 4 3 2 1 0 
+7 6 5 4 3 2 1 0 
+8 7 6 5 4 3 2 1 0 
+9 8 7 6 5 4 3 2 1 0 
+
+Program 10:
+**********
+#!/bin/sh
+
+for var1 in 1 2 3
+do
+   for var2 in 0 5
+   do
+      if [ $var1 -eq 2 -a $var2 -eq 0 ]
+      then
+         break 2
+      else
+         echo "$var1 $var2"
+      fi
+   done
+done
+
+
+Expected Output:
+****************
+1 0
+1 5
+
+
+Program 11:
+***********
+#!/bin/sh
+
+NUMS="1 2 3 4 5 6 7"
+
+for NUM in $NUMS
+do
+   Q=`expr $NUM % 2`
+   if [ $Q -eq 0 ]
+   then
+      echo "Number is an even number!!"
+      continue
+   fi
+   echo "Found odd number"
+done
+
+Expected Output:
+****************
+Found odd number
+Number is an even number!!
+Found odd number
+Number is an even number!!
+Found odd number
+Number is an even number!!
+Found odd number
+
+Program 12:
+***********
+#!/bin/sh
+
+a=0
+
+while [ $a -lt 10 ]
+do
+   echo $a
+   if [ $a -eq 5 ]
+   then
+      break
+   fi
+   a=`expr $a + 1`
+done
+
+
+Expected Output:
+****************
+0
+1
+2
+3
+4
+5
+
+
+Program 13:
+***********
+#!/bin/sh
+
+DATE=`date`
+echo "Date is $DATE"
+
+USERS=`who | wc -l`
+echo "Logged in user are $USERS"
+
+UP=`date ; uptime`
+echo "Uptime is $UP"
+
+Expected Output:
+****************
+Date is Thu 18 Nov 06:49:03 UTC 2021
+Logged in user are 1
+Uptime is Thu 18 Nov 06:49:03 UTC 2021
+ 06:49:03 up 49 min,  1 user,  load average: 0.00, 0.00, 0.00
+
+Program 14:
+***********
+#!/bin/sh
+
+echo ${var:-"Variable is not set"}
+echo "1 - Value of var is ${var}"
+
+echo ${var:="Variable is not set"}
+echo "2 - Value of var is ${var}"
+
+unset var
+echo ${var:+"This is default value"}
+echo "3 - Value of var is $var"
+
+var="Prefix"
+echo ${var:+"This is default value"}
+echo "4 - Value of var is $var"
+
+echo ${var:?"Print this message"}
+echo "5 - Value of var is ${var}"
+
+Expected Output:
+****************
+Variable is not set
+1 - Value of var is 
+Variable is not set
+2 - Value of var is Variable is not set
+
+3 - Value of var is 
+This is default value
+4 - Value of var is Prefix
+Prefix
+5 - Value of var is Prefix
+
+Program 15:
+***********
+#!/bin/sh
+
+NUMS="1 2 3 4 5 6 7"
+
+for NUM in $NUMS
+do
+   Q=`expr $NUM % 2`
+   if [ $Q -eq 0 ]
+   then
+      echo "Number is an even number!!"
+      continue
+   fi
+   echo "Found odd number"
+done
+
+
+Expected Output:
+****************
+Found odd number
+Number is an even number!!
+Found odd number
+Number is an even number!!
+Found odd number
+Number is an even number!!
+Found odd number
+
+Program 16:
+***********
+#!/bin/sh
+
+NAME[0]="Zara"
+NAME[1]="Qadir"
+NAME[2]="Mahnaz"
+NAME[3]="Ayan"
+NAME[4]="Daisy"
+echo "First Index: ${NAME[0]}"
+echo "Second Index: ${NAME[1]}"
+
+
+Expected Output:
+****************
+./array.sh: 3: ./array.sh: NAME[0]=Zara: not found
+./array.sh: 4: ./array.sh: NAME[1]=Qadir: not found
+./array.sh: 5: ./array.sh: NAME[2]=Mahnaz: not found
+./array.sh: 6: ./array.sh: NAME[3]=Ayan: not found
+./array.sh: 7: ./array.sh: NAME[4]=Daisy: not found
+./array.sh: 8: ./array.sh: Bad substitution
+
+Program 17:
+***********
+#!/bin/sh
+
+val=`expr 2002 + 2004`
+echo "Total value : $val"
+
+Expected Output:
+****************
+2006
+
+Program 18:
+***********
+#!/bin/sh
+
+a=10
+b=20
+
+if [ $a == $b ]
+then
+   echo "a is equal to b"
+fi
+
+if [ $a != $b ]
+then
+   echo "a is not equal to b"
+fi
+
+
+Expected Output:
+****************
+a is not equal to b
+
+Program 19:
+***********
+#!/bin/sh
+
+a=10
+b=20
+
+if [ $a == $b ]
+then
+   echo "a is equal to b"
+else
+   echo "a is not equal to b"
+fi
+
+Expected Output:
+****************
+a is not equal to b
+
+Program 20:
+***********
+#!/bin/sh
+
+a=10
+b=20
+
+if [ $a == $b ]
+then
+   echo "a is equal to b"
+elif [ $a -gt $b ]
+then
+   echo "a is greater than b"
+elif [ $a -lt $b ]
+then
+   echo "a is less than b"
+else
+   echo "None of the condition met"
+fi
+
+Expected Output:
+****************
+a is less than b
+
